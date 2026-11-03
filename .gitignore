@@ -1,5 +1,6 @@
 /vendor/
 /.phpunit.cache/
 composer.lock
-composer.offline.json
+composer.offline.lock
 .phpunit.result.cache
+composer.offline.json
