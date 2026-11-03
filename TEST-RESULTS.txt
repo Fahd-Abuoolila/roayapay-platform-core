@@ -1,0 +1,319 @@
+RoayaPay Platform Core 1.0.0 — test run on PHP 8.4.27 / Laravel 12.70.2 / PHPUnit 11.5.57 / Testbench Core 10.16.0 (2026-11-03T01:19Z)
+Result: OK (270 tests, 1117 assertions) — Unit 114, Feature 136, Architecture 20
+
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /home/claude/roayapay-platform-core/phpunit.xml.dist
+
+...............................................................  63 / 270 ( 23%)
+............................................................... 126 / 270 ( 46%)
+............................................................... 189 / 270 ( 70%)
+............................................................... 252 / 270 ( 93%)
+..................                                              270 / 270 (100%)
+
+Time: 00:02.566, Memory: 52.50 MB
+
+Api Code Registry (RoayaPay\PlatformCore\Tests\Unit\ApiCodeRegistry)
+ ✔ The shipped registry is valid
+ ✔ The contract examples are registered as specified
+ ✔ Only http 200 and 500 are used
+ ✔ Duplicate integer codes are detected
+ ✔ Missing arabic or english messages are detected
+ ✔ Invalid http statuses are detected
+ ✔ Invalid types are detected
+ ✔ Missing fields and unknown fields are detected
+ ✔ Invalid symbolic names are detected
+ ✔ Package required codes cannot be removed
+ ✔ An invalid registry cannot be constructed
+ ✔ Unknown codes fail clearly
+ ✔ Additional languages require messages
+
+Audit Trail (RoayaPay\PlatformCore\Tests\Feature\AuditTrail)
+ ✔ Events are appended to the database with actor subject timestamp and metadata
+ ✔ Events are correlated with request and transaction
+ ✔ Audit events are separate from error logs
+ ✔ The contract and store are append only
+ ✔ Events are immutable
+ ✔ Financial events are never silently dropped
+ ✔ Non financial failures are logged and swallowed
+ ✔ The store is configurable
+ ✔ Invalid action names are rejected
+
+Enforcement (RoayaPay\PlatformCore\Tests\Feature\Enforcement)
+ ✔ An approved response passes through
+ ✔ Response json is logged and replaced
+ ✔ A raw array is replaced
+ ✔ Log mode keeps the original response
+ ✔ Downloads streams and text are untouched
+ ✔ An attribute exempts a controller action
+ ✔ Attribute lookups are memoized
+ ✔ Routes can be allowed by name
+ ✔ Web routes are not affected
+
+Exception Normalizer (RoayaPay\PlatformCore\Tests\Unit\ExceptionNormalizer)
+ ✔ Framework and third party exceptions are normalized with data set "validation"
+ ✔ Framework and third party exceptions are normalized with data set "authentication"
+ ✔ Framework and third party exceptions are normalized with data set "authorization"
+ ✔ Framework and third party exceptions are normalized with data set "model not found"
+ ✔ Framework and third party exceptions are normalized with data set "prepared model not found"
+ ✔ Framework and third party exceptions are normalized with data set "prepared authorization"
+ ✔ Framework and third party exceptions are normalized with data set "route not found"
+ ✔ Framework and third party exceptions are normalized with data set "method not allowed"
+ ✔ Framework and third party exceptions are normalized with data set "http 401"
+ ✔ Framework and third party exceptions are normalized with data set "http 403"
+ ✔ Framework and third party exceptions are normalized with data set "http 418"
+ ✔ Framework and third party exceptions are normalized with data set "http 503"
+ ✔ Framework and third party exceptions are normalized with data set "http 500"
+ ✔ Framework and third party exceptions are normalized with data set "throttle"
+ ✔ Framework and third party exceptions are normalized with data set "csrf"
+ ✔ Framework and third party exceptions are normalized with data set "signature"
+ ✔ Framework and third party exceptions are normalized with data set "query"
+ ✔ Framework and third party exceptions are normalized with data set "unique violation"
+ ✔ Framework and third party exceptions are normalized with data set "pdo"
+ ✔ Framework and third party exceptions are normalized with data set "http client timeout"
+ ✔ Framework and third party exceptions are normalized with data set "http client refused"
+ ✔ Framework and third party exceptions are normalized with data set "http client other"
+ ✔ Framework and third party exceptions are normalized with data set "provider 422"
+ ✔ Framework and third party exceptions are normalized with data set "provider 502"
+ ✔ Framework and third party exceptions are normalized with data set "provider 504"
+ ✔ Framework and third party exceptions are normalized with data set "guzzle connect timeout"
+ ✔ Framework and third party exceptions are normalized with data set "guzzle connect refused"
+ ✔ Framework and third party exceptions are normalized with data set "guzzle server error"
+ ✔ Framework and third party exceptions are normalized with data set "unknown api code"
+ ✔ Framework and third party exceptions are normalized with data set "php error"
+ ✔ Framework and third party exceptions are normalized with data set "unexpected"
+ ✔ Framework and third party exceptions are normalized with data set "logic"
+ ✔ The real cause is kept as previous for prepared exceptions
+ ✔ Timeouts are never retryable but undelivered requests are
+ ✔ Query exceptions keep bindings out of the context
+ ✔ Model not found can map to a specific code
+ ✔ Config mappings apply to subclasses
+ ✔ Attribute mappers are indexed and keep the chain
+ ✔ Mappers from config are registered
+ ✔ A mapper without the attribute is rejected
+ ✔ A roayapay exception wrapped by another exception is found
+ ✔ Business rejections are never turned into internal errors
+ ✔ Normalization does no per call reflection
+
+Exception Rendering (RoayaPay\PlatformCore\Tests\Feature\ExceptionRendering)
+ ✔ A business exception is a known result with http 200
+ ✔ The legacy constructor form works
+ ✔ A bilingual override on the exception is rendered
+ ✔ Expected business outcomes are not reported
+ ✔ A validation exception from the framework is rendered in the request language
+ ✔ An unexpected exception is http 500 code err without internal details
+ ✔ An unexpected exception is reported once with sanitized context
+ ✔ Php errors are reported as critical
+ ✔ Database failures are 500 and never expose sql or bindings
+ ✔ Model not found is a known not found result
+ ✔ Authentication and authorization outcomes are known results
+ ✔ Authorization denials go to the security log
+ ✔ Unknown api routes and methods use the standard format
+ ✔ An unregistered code fails safely and loudly
+ ✔ Timeouts are reported as unknown outcome not as failed payments
+ ✔ Web routes keep laravels default exception handling
+ ✔ Web json requests are not converted
+ ✔ Exception responses carry the request id header
+ ✔ Internal diagnostic context never reaches the response
+ ✔ A failure while rendering still produces a safe code err
+ ✔ A roayapay response thrown via http response exception is kept
+ ✔ The secret message constant really contains secrets
+
+Idempotency (RoayaPay\PlatformCore\Tests\Feature\Idempotency)
+ ✔ A repeated request is replayed not re executed with data set "database"
+ ✔ A repeated request is replayed not re executed with data set "cache"
+ ✔ A different payload with the same key is a conflict with data set "database"
+ ✔ A different payload with the same key is a conflict with data set "cache"
+ ✔ Payload key order does not matter with data set "database"
+ ✔ Payload key order does not matter with data set "cache"
+ ✔ A known business failure is stored and replayed with data set "database"
+ ✔ A known business failure is stored and replayed with data set "cache"
+ ✔ A validation failure releases the key with data set "database"
+ ✔ A validation failure releases the key with data set "cache"
+ ✔ A crash is never treated as a failure the outcome is unknown with data set "database"
+ ✔ A crash is never treated as a failure the outcome is unknown with data set "cache"
+ ✔ A concurrent in progress request is rejected with data set "database"
+ ✔ A concurrent in progress request is rejected with data set "cache"
+ ✔ An expired lock becomes outcome unknown not re acquired with data set "database"
+ ✔ An expired lock becomes outcome unknown not re acquired with data set "cache"
+ ✔ Only the owner can complete a claim with data set "database"
+ ✔ Only the owner can complete a claim with data set "cache"
+ ✔ A missing or malformed key is rejected by the middleware
+ ✔ Concurrent processes cannot both acquire the same key
+ ✔ The cache store requires lock support
+ ✔ Rows are written to the configured table
+
+Language Middleware (RoayaPay\PlatformCore\Tests\Feature\LanguageMiddleware)
+ ✔ An arabic request is answered in arabic
+ ✔ An english request is answered in english
+ ✔ The header is case and whitespace insensitive
+ ✔ A missing language is rejected with the standard format
+ ✔ A request without the header never reaches the controller
+ ✔ A browser style language list is rejected as unsupported
+ ✔ An unsupported language is rejected
+ ✔ Sequential requests do not leak language or change the app locale
+ ✔ It adds vary accept language
+
+Monitoring And Logging (RoayaPay\PlatformCore\Tests\Feature\MonitoringAndLogging)
+ ✔ The logger supports all standard levels
+ ✔ Sensitive values are redacted from logs
+ ✔ Logs carry request and transaction ids
+ ✔ A logging failure never breaks the request
+ ✔ A failing reporter does not stop other reporters
+ ✔ The same exception is reported only once
+ ✔ Reporting policies are respected
+ ✔ Roayapay exceptions in queues or console use the monitor
+ ✔ Non roayapay exceptions outside api keep laravel reporting
+ ✔ The log reporter is registered by default
+
+No Request State Leak (RoayaPay\PlatformCore\Tests\Architecture\NoRequestStateLeak)
+ ✔ The package declares no static properties at all
+ ✔ The package never mutates the global locale
+ ✔ Every request object gets its own context
+ ✔ Context values are write once within a request
+ ✔ Language and response data do not leak across worker style requests
+ ✔ Builder state is never shared
+ ✔ Exception handler callbacks resolve the current container
+
+Request Id (RoayaPay\PlatformCore\Tests\Feature\RequestId)
+ ✔ A request id is generated and returned as a header only
+ ✔ A valid incoming request id is propagated
+ ✔ An invalid incoming request id is replaced
+ ✔ Incoming ids can be distrusted
+ ✔ Each request gets its own id
+ ✔ Rejected language responses still get a request id
+ ✔ Errors raised before route middleware still get a request id
+ ✔ The request id is added to laravel log context
+
+Response Builder (RoayaPay\PlatformCore\Tests\Feature\ResponseBuilder)
+ ✔ It returns exactly the four keys with correct types
+ ✔ Missing data is an empty object never an empty array
+ ✔ The default message is resolved in the request language
+ ✔ A custom bilingual message and status are used
+ ✔ Arabic is returned unescaped
+ ✔ A missing arabic message is rejected
+ ✔ A missing english message is rejected
+ ✔ An empty message is rejected
+ ✔ An unknown code fails clearly
+ ✔ Default and custom status work
+ ✔ Http status follows the code definition
+ ✔ Builders are independent instances
+ ✔ The response type cannot be corrupted after creation
+ ✔ Arrayable and object data are supported
+
+Response Contract Scanner (RoayaPay\PlatformCore\Tests\Architecture\ResponseContractScanner)
+ ✔ It detects every forbidden pattern
+ ✔ Compliant code produces no violations
+ ✔ The scanner reads directories
+ ✔ The artisan command fails ci on violations
+ ✔ The standalone cli works without laravel
+ ✔ The package test routes violations are caught by the phpunit helper
+ ✔ The package itself follows the standard
+
+Roaya Pay Exception (RoayaPay\PlatformCore\Tests\Unit\RoayaPayException)
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "business"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "business default"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "payment"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "validation"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "unauthorized"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "forbidden"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "notFound"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "notFound default"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "external"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "database"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "security"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "internal"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "system"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "fromThrowable"
+ ✔ Every factory returns exactly roayapay exception with registered code with data set "constructor"
+ ✔ The class is final and every public static method returns self
+ ✔ Every category has a registered default code
+ ✔ Category does not decide the http status
+ ✔ The previous exception is preserved
+ ✔ From throwable returns an existing roayapay exception unchanged
+ ✔ The php message is internal and safe
+ ✔ Bilingual overrides are validated
+ ✔ Fluent modifiers update metadata
+ ✔ Correlation is filled but never overwritten
+ ✔ Validation accepts every error representation
+ ✔ Properties cannot be written from outside
+ ✔ The exception can be created without a laravel container
+
+Sanitizer (RoayaPay\PlatformCore\Tests\Unit\Sanitizer)
+ ✔ It classifies sensitive keys with data set "password"
+ ✔ It classifies sensitive keys with data set "password_confirmation"
+ ✔ It classifies sensitive keys with data set "camel password"
+ ✔ It classifies sensitive keys with data set "otp"
+ ✔ It classifies sensitive keys with data set "otp code"
+ ✔ It classifies sensitive keys with data set "pin"
+ ✔ It classifies sensitive keys with data set "card pin"
+ ✔ It classifies sensitive keys with data set "cvv"
+ ✔ It classifies sensitive keys with data set "card number"
+ ✔ It classifies sensitive keys with data set "card number camel"
+ ✔ It classifies sensitive keys with data set "pan"
+ ✔ It classifies sensitive keys with data set "token"
+ ✔ It classifies sensitive keys with data set "access token"
+ ✔ It classifies sensitive keys with data set "authorization"
+ ✔ It classifies sensitive keys with data set "api key"
+ ✔ It classifies sensitive keys with data set "private key"
+ ✔ It classifies sensitive keys with data set "client secret"
+ ✔ It classifies sensitive keys with data set "cookie"
+ ✔ It classifies sensitive keys with data set "iban"
+ ✔ It classifies sensitive keys with data set "amount"
+ ✔ It classifies sensitive keys with data set "footprint (contains otp letters)"
+ ✔ It classifies sensitive keys with data set "spinner (contains pin letters)"
+ ✔ It classifies sensitive keys with data set "merchant id"
+ ✔ It classifies sensitive keys with data set "currency"
+ ✔ It classifies sensitive keys with data set "company"
+ ✔ It classifies sensitive keys with data set "list index"
+ ✔ It redacts nested structures and keeps safe values
+ ✔ It masks secrets inside free text
+ ✔ Extra keys and custom mask are supported
+ ✔ Objects are never dumped
+ ✔ Deep structures are truncated
+
+Service Provider (RoayaPay\PlatformCore\Tests\Architecture\ServiceProvider)
+ ✔ Middleware aliases and the opt in group are registered
+ ✔ Global middleware and existing groups are not altered
+ ✔ Config translations and migrations are publishable
+ ✔ Package codes are merged with application codes
+ ✔ The codes command lists and validates
+ ✔ The composer manifest targets php 84 and laravel 12 only
+
+Validation (RoayaPay\PlatformCore\Tests\Feature\Validation)
+ ✔ Arabic validation messages match the contract example
+ ✔ English validation messages match the contract example
+ ✔ Only one message per field by default
+ ✔ All messages per field can be enabled
+ ✔ Validation details are never placed in data
+ ✔ The throwing api validates and renders in the request language
+ ✔ Framework validation is localized on api requests without changing the locale
+ ✔ Form requests are normalized and localized
+ ✔ Form request authorization failure is forbidden
+ ✔ Common rules are translated in both languages with data set "required"
+ ✔ Common rules are translated in both languages with data set "email"
+ ✔ Common rules are translated in both languages with data set "min"
+ ✔ Common rules are translated in both languages with data set "max"
+ ✔ Common rules are translated in both languages with data set "numeric"
+ ✔ Common rules are translated in both languages with data set "integer"
+ ✔ Common rules are translated in both languages with data set "string"
+ ✔ Common rules are translated in both languages with data set "confirmed"
+ ✔ Common rules are translated in both languages with data set "same"
+ ✔ Common rules are translated in both languages with data set "different"
+ ✔ Common rules are translated in both languages with data set "digits"
+ ✔ Common rules are translated in both languages with data set "between"
+ ✔ Common rules are translated in both languages with data set "date"
+ ✔ Common rules are translated in both languages with data set "boolean"
+ ✔ Common rules are translated in both languages with data set "in"
+ ✔ Common rules are translated in both languages with data set "regex"
+ ✔ Common rules are translated in both languages with data set "unknown field name"
+ ✔ Unique and exists rules use the database and are translated
+ ✔ Multiple failures are joined with newlines in field order
+ ✔ Field names are translated
+ ✔ Applications can extend field names and messages through lang files
+ ✔ Custom inline messages are preserved
+ ✔ Validation outside api requests keeps laravel defaults
+ ✔ The shared translator is not mutated by api validation
+
+OK (270 tests, 1117 assertions)

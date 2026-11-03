@@ -1,0 +1,64 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * RoayaPay response-standard scanner (no Laravel bootstrap required).
+ *
+ *   vendor/bin/roayapay-scan app/Http/Controllers/Api [--codes=config/roayapay_api_codes.php] [--json]
+ *
+ * Exit code 1 when violations are found.
+ */
+
+foreach ([__DIR__.'/../vendor/autoload.php', __DIR__.'/../../../autoload.php'] as $autoload) {
+    if (is_file($autoload)) {
+        require $autoload;
+        break;
+    }
+}
+
+use RoayaPay\PlatformCore\Analysis\ResponseContractScanner;
+use RoayaPay\PlatformCore\Analysis\Violation;
+
+$paths = [];
+$codesFile = null;
+$json = false;
+
+foreach (array_slice($argv, 1) as $arg) {
+    if (str_starts_with($arg, '--codes=')) {
+        $codesFile = substr($arg, 8);
+    } elseif ($arg === '--json') {
+        $json = true;
+    } else {
+        $paths[] = $arg;
+    }
+}
+
+if ($paths === []) {
+    $paths = ['app/Http/Controllers/Api'];
+}
+
+$codes = require __DIR__.'/../config/roayapay_api_codes.php';
+if ($codesFile !== null) {
+    if (! is_file($codesFile)) {
+        fwrite(STDERR, "Codes file not found: {$codesFile}\n");
+        exit(2);
+    }
+    $codes = array_replace($codes, require $codesFile);
+}
+
+$violations = (new ResponseContractScanner(array_keys($codes)))->scan($paths);
+
+if ($json) {
+    echo json_encode(array_map(fn (Violation $v): array => $v->toArray(), $violations), JSON_PRETTY_PRINT), "\n";
+} else {
+    foreach ($violations as $violation) {
+        echo $violation, "\n";
+    }
+    echo $violations === []
+        ? "RoayaPay response standard: no violations.\n"
+        : sprintf("RoayaPay response standard: %d violation(s).\n", count($violations));
+}
+
+exit($violations === [] ? 0 : 1);

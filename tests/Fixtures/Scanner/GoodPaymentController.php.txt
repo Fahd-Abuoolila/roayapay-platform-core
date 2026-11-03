@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use Illuminate\Http\Request;
+use RoayaPay\PlatformCore\Attributes\AllowsNonStandardResponse;
+use RoayaPay\PlatformCore\Exceptions\RoayaPayException;
+use RoayaPay\PlatformCore\Response\BuildResponse;
+use RoayaPay\PlatformCore\Response\RoayaPayJsonResponse;
+use RoayaPay\PlatformCore\Validation\ApiValidator;
+
+final class GoodPaymentController
+{
+    public function store(Request $request): RoayaPayJsonResponse
+    {
+        $data = ApiValidator::validate($request->all(), $this->rules());
+
+        if ($data['amount'] > 100) {
+            throw RoayaPayException::business('INSUFFICIENT_BALANCE');
+        }
+
+        $items = array_map(function ($item) {
+            return ['id' => $item]; // return inside a closure is not a controller result
+        }, [1, 2]);
+
+        return BuildResponse::setCode('SUCCESS')->setData(['items' => $items, 'label' => "Total {$data['amount']}"])->getResponse();
+    }
+
+    #[AllowsNonStandardResponse(reason: 'Acme webhook contract')]
+    public function webhook()
+    {
+        return response()->json(['received' => true]);
+    }
+
+    public function legacy()
+    {
+        return response()->json(['legacy' => true]); // roayapay-ignore: removed in v2 migration
+    }
+
+    public static function helper(): array
+    {
+        return ['static helpers are fine'];
+    }
+
+    private function rules(): array
+    {
+        return ['amount' => 'required|numeric'];
+    }
+
+    public function __construct()
+    {
+    }
+}
+
+final class Formatter
+{
+    public function format(): array
+    {
+        return ['not a controller'];
+    }
+}

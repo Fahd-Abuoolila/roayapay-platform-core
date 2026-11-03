@@ -1,0 +1,50 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+/*
+ * RoayaPay append-only audit trail.
+ *
+ * The package only ever INSERTs into this table. Enforce it at the database
+ * level too, e.g. (MySQL):
+ *     REVOKE UPDATE, DELETE ON roayapay_audit_events FROM 'app_user'@'%';
+ * or (PostgreSQL) a BEFORE UPDATE OR DELETE trigger that raises an exception.
+ * Archive (never delete in place) according to your retention policy.
+ */
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(config('roayapay.audit.table', 'roayapay_audit_events'), function (Blueprint $table): void {
+            $table->uuid('id')->primary();
+            $table->string('action', 120)->index();
+            $table->string('actor_type', 40);
+            $table->string('actor_id', 64)->nullable();
+            $table->string('subject_type', 80);
+            $table->string('subject_id', 64);
+            $table->json('metadata');
+            $table->boolean('financial')->default(false)->index();
+            $table->dateTime('occurred_at', 6)->index();
+            $table->string('request_id', 128)->nullable()->index();
+            $table->string('transaction_id', 128)->nullable()->index();
+            $table->char('hash', 64);
+
+            $table->index(['subject_type', 'subject_id']);
+            $table->index(['actor_type', 'actor_id']);
+        });
+    }
+
+    public function down(): void
+    {
+        // Intentionally irreversible in production: audit history must not be dropped by a rollback.
+        if (app()->environment('production')) {
+            throw new RuntimeException('Refusing to drop the RoayaPay audit trail in production.');
+        }
+
+        Schema::dropIfExists(config('roayapay.audit.table', 'roayapay_audit_events'));
+    }
+};

@@ -1,0 +1,62 @@
+{
+    "name": "roayapay/platform-core",
+    "description": "RoayaPay Platform Core: the official RoayaPay engineering standard for Laravel 12 APIs (unified responses, API code registry, bilingual validation, unified exceptions, monitoring, audit trail and idempotency).",
+    "type": "library",
+    "license": "proprietary",
+    "keywords": ["roayapay", "laravel", "payments", "api", "response", "idempotency", "audit"],
+    "authors": [
+        {
+            "name": "RoayaPay Engineering"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "illuminate/cache": "^12.0",
+        "illuminate/console": "^12.0",
+        "illuminate/contracts": "^12.0",
+        "illuminate/database": "^12.0",
+        "illuminate/http": "^12.0",
+        "illuminate/log": "^12.0",
+        "illuminate/routing": "^12.0",
+        "illuminate/support": "^12.0",
+        "illuminate/translation": "^12.0",
+        "illuminate/validation": "^12.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^12.0",
+        "orchestra/testbench-core": "^10.0",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "RoayaPay\\PlatformCore\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RoayaPay\\PlatformCore\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/roayapay-scan"
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RoayaPay\\PlatformCore\\Providers\\PlatformCoreServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "scan": "php bin/roayapay-scan"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

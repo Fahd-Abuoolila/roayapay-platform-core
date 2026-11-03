@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Response;
+use RoayaPay\PlatformCore\Exceptions\RoayaPayException;
+use RoayaPay\PlatformCore\Response\BuildResponse;
+
+class BadPaymentController
+{
+    public function jsonHelper()
+    {
+        return response()->json(['ok' => true]);
+    }
+
+    public function facade()
+    {
+        return Response::json(['ok' => true]);
+    }
+
+    public function newJson(): JsonResponse
+    {
+        return new JsonResponse(['ok' => true]);
+    }
+
+    public function fqcnJson()
+    {
+        return new \Symfony\Component\HttpFoundation\JsonResponse([]);
+    }
+
+    public function numericBuilder()
+    {
+        return BuildResponse::setCode(1000)->getResponse();
+    }
+
+    public function numericException()
+    {
+        throw RoayaPayException::business(4001);
+    }
+
+    public function unknownCode()
+    {
+        return BuildResponse::setCode('MADE_UP_CODE')->getResponse();
+    }
+
+    public function unknownExceptionCode()
+    {
+        throw new RoayaPayException('ALSO_MADE_UP');
+    }
+
+    public function hardCodedArray()
+    {
+        return response(['status' => true, 'code' => 1000, 'message' => 'Done', 'data' => []]);
+    }
+
+    public function rawArray()
+    {
+        return ['ok' => true];
+    }
+
+    public function rawCompact()
+    {
+        $ok = true;
+
+        return compact('ok');
+    }
+}

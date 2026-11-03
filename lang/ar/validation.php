@@ -1,0 +1,108 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ | رسائل التحقق الخاصة بـ RoayaPay (العربية).
+ | للتعديل: php artisan vendor:publish --tag=roayapay-lang
+ | ثم عدّل lang/vendor/roayapay/ar/validation.php
+ */
+
+return [
+    'accepted' => 'يجب قبول :attribute',
+    'after' => ':attribute يجب أن يكون تاريخًا بعد :date',
+    'after_or_equal' => ':attribute يجب أن يكون تاريخًا بعد أو يساوي :date',
+    'alpha' => ':attribute يجب أن يحتوي على حروف فقط',
+    'alpha_dash' => ':attribute يجب أن يحتوي على حروف وأرقام وشرطات فقط',
+    'alpha_num' => ':attribute يجب أن يحتوي على حروف وأرقام فقط',
+    'array' => ':attribute يجب أن يكون قائمة',
+    'before' => ':attribute يجب أن يكون تاريخًا قبل :date',
+    'before_or_equal' => ':attribute يجب أن يكون تاريخًا قبل أو يساوي :date',
+    'between' => [
+        'numeric' => ':attribute يجب أن يكون بين :min و :max',
+        'string' => ':attribute يجب أن يكون بين :min و :max حرفًا',
+        'array' => ':attribute يجب أن يحتوي على عدد عناصر بين :min و :max',
+        'file' => 'حجم :attribute يجب أن يكون بين :min و :max كيلوبايت',
+    ],
+    'boolean' => ':attribute يجب أن تكون قيمته صح أو خطأ',
+    'confirmed' => 'تأكيد :attribute غير مطابق',
+    'date' => ':attribute يجب أن يكون تاريخًا صحيحًا',
+    'date_format' => ':attribute يجب أن يطابق الصيغة :format',
+    'decimal' => ':attribute يجب أن يحتوي على :decimal منازل عشرية',
+    'different' => ':attribute و :other يجب أن يكونا مختلفين',
+    'digits' => ':attribute يجب أن يتكون من :digits أرقام',
+    'digits_between' => ':attribute يجب أن يتكون من :min إلى :max أرقام',
+    'email' => ':attribute يجب أن يكون بريدًا إلكترونيًا صحيحًا',
+    'exists' => 'قيمة :attribute المختارة غير صحيحة',
+    'file' => ':attribute يجب أن يكون ملفًا',
+    'filled' => ':attribute يجب أن يحتوي على قيمة',
+    'gt' => [
+        'numeric' => ':attribute يجب أن يكون أكبر من :value',
+        'string' => ':attribute يجب أن يكون أطول من :value حرفًا',
+        'array' => ':attribute يجب أن يحتوي على أكثر من :value عناصر',
+        'file' => 'حجم :attribute يجب أن يكون أكبر من :value كيلوبايت',
+    ],
+    'gte' => [
+        'numeric' => ':attribute يجب أن يكون أكبر من أو يساوي :value',
+        'string' => ':attribute يجب ألا يقل عن :value حرفًا',
+        'array' => ':attribute يجب أن يحتوي على :value عناصر أو أكثر',
+        'file' => 'حجم :attribute يجب ألا يقل عن :value كيلوبايت',
+    ],
+    'image' => ':attribute يجب أن يكون صورة',
+    'in' => 'قيمة :attribute المختارة غير صحيحة',
+    'integer' => ':attribute يجب أن يكون عددًا صحيحًا',
+    'ip' => ':attribute يجب أن يكون عنوان IP صحيحًا',
+    'json' => ':attribute يجب أن يكون نص JSON صحيحًا',
+    'lt' => [
+        'numeric' => ':attribute يجب أن يكون أقل من :value',
+        'string' => ':attribute يجب أن يكون أقصر من :value حرفًا',
+        'array' => ':attribute يجب أن يحتوي على أقل من :value عناصر',
+        'file' => 'حجم :attribute يجب أن يكون أقل من :value كيلوبايت',
+    ],
+    'lte' => [
+        'numeric' => ':attribute يجب أن يكون أقل من أو يساوي :value',
+        'string' => ':attribute يجب ألا يزيد عن :value حرفًا',
+        'array' => ':attribute يجب ألا يحتوي على أكثر من :value عناصر',
+        'file' => 'حجم :attribute يجب ألا يزيد عن :value كيلوبايت',
+    ],
+    'max' => [
+        'numeric' => ':attribute يجب ألا يزيد عن :max',
+        'string' => ':attribute يجب ألا يزيد عن :max حرفًا',
+        'array' => ':attribute يجب ألا يحتوي على أكثر من :max عناصر',
+        'file' => 'حجم :attribute يجب ألا يزيد عن :max كيلوبايت',
+    ],
+    'max_digits' => ':attribute يجب ألا يزيد عن :max أرقام',
+    'mimes' => ':attribute يجب أن يكون ملفًا من نوع: :values',
+    'min' => [
+        'numeric' => ':attribute يجب ألا يقل عن :min',
+        'string' => ':attribute يجب ألا تقل عن :min أحرف',
+        'array' => ':attribute يجب أن يحتوي على :min عناصر على الأقل',
+        'file' => 'حجم :attribute يجب ألا يقل عن :min كيلوبايت',
+    ],
+    'min_digits' => ':attribute يجب ألا يقل عن :min أرقام',
+    'not_in' => 'قيمة :attribute المختارة غير صحيحة',
+    'numeric' => ':attribute يجب أن يكون رقمًا',
+    'present' => ':attribute يجب أن يكون موجودًا',
+    'prohibited' => ':attribute غير مسموح به',
+    'regex' => 'صيغة :attribute غير صحيحة',
+    'required' => ':attribute مطلوب',
+    'required_if' => ':attribute مطلوب عندما تكون قيمة :other هي :value',
+    'required_unless' => ':attribute مطلوب ما لم تكن قيمة :other ضمن :values',
+    'required_with' => ':attribute مطلوب عند وجود :values',
+    'required_with_all' => ':attribute مطلوب عند وجود :values',
+    'required_without' => ':attribute مطلوب عند عدم وجود :values',
+    'required_without_all' => ':attribute مطلوب عند عدم وجود أي من :values',
+    'same' => ':attribute و :other يجب أن يتطابقا',
+    'size' => [
+        'numeric' => ':attribute يجب أن يساوي :size',
+        'string' => ':attribute يجب أن يتكون من :size حرفًا',
+        'array' => ':attribute يجب أن يحتوي على :size عناصر',
+        'file' => 'حجم :attribute يجب أن يكون :size كيلوبايت',
+    ],
+    'string' => ':attribute يجب أن يكون نصًا',
+    'timezone' => ':attribute يجب أن يكون منطقة زمنية صحيحة',
+    'unique' => ':attribute مستخدم من قبل',
+    'uploaded' => 'فشل رفع :attribute',
+    'url' => ':attribute يجب أن يكون رابطًا صحيحًا',
+    'uuid' => ':attribute يجب أن يكون UUID صحيحًا',
+];
